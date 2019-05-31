@@ -1,19 +1,16 @@
 import MySQLdb as mdb
 
-PRICE     = 0
-TIMESTAMP = 1
-SOURCE    = 2
-
-conn = mdb.connect('hostname', 'username', 'p@s$w0rd', 'database')
+conn = mdb.connect('localhost', 'root', 'root', 'chuchudb')
 cursor = conn.cursor()
 
-with open('gold_price.csv', 'r') as gold_prices:
-    lines = gold_prices.read().splitlines()
-
+with open('data/state.csv', 'r') as dmas:
+    lines = dmas.read().splitlines()
     for i in range(1, len(lines)):
-        _tuple = lines[i].split(',')
-        cursor.execute("INSERT INTO gold_price (price, time, source) VALUES (%s, '%s', '%s');" %
-        (_tuple[PRICE], _tuple[TIMESTAMP], _tuple[SOURCE]))
+        # _tuple = lines[i].split(',')
+        cursor.execute(
+            "SET FOREIGN_KEY_CHECKS = 0; INSERT INTO state (abbreviation, name, usps) VALUES ('%s', '%s', '%s');" %
+            ("HK", "Eighty 8", 0)
+        )
 
 cursor.close()
 conn.commit()
