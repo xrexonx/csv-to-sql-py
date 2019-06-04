@@ -1,15 +1,21 @@
+# import os
 import MySQLdb as mdb
 
 conn = mdb.connect('localhost', 'root', 'root', 'chuchudb')
 cursor = conn.cursor()
 
-table_name = 'states'
+table_name = 'state'
 
 with open('data/'+table_name+'.csv', 'r') as state:
     csv = state.read().splitlines()
     csv_header = csv[0]
-
     cursor.execute('SELECT * FROM '+table_name+';')
+    # db_name = os.getenv("DB_NAME")
+    # print(db_name)
+    # print(os.listdir("data"))
+
+    # for x in os.listdir('data'):
+    #     print(x)
 
     # Check if done migration
     if not cursor.fetchone():
