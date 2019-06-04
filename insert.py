@@ -3,16 +3,22 @@ import MySQLdb as mdb
 conn = mdb.connect('localhost', 'root', 'root', 'chuchudb')
 cursor = conn.cursor()
 
-with open('data/states.csv', 'r') as state:
-    lines = state.read().splitlines()
-    for i in range(1, len(lines)):
-        row = lines[i].split(',')
-        print(row)
-        # cursor.execute('SET FOREIGN_KEY_CHECKS = 0;')
-        # cursor.execute(
-        #     "INSERT INTO state (abbreviation, name, usps) VALUES ('%s', '%s', '%s');" %
-        #     ("HK", "Eighty 8", 0)
-        # )
+table_name = 'states'
+
+with open('data/'+table_name+'.csv', 'r') as state:
+    csv = state.read().splitlines()
+    csv_header = csv[0]
+
+    cursor.execute('SELECT * FROM '+table_name+';')
+
+    # Check if done migration
+    if not cursor.fetchone():
+        for i in range(1, len(csv)):
+            insert_query = "insert into " + table_name + " (" + csv_header.replace('"', '') + ")"
+            values = " values (" + csv[i] + ")"
+            sql = insert_query + values
+            cursor.execute('SET FOREIGN_KEY_CHECKS = 0;')
+            cursor.execute(sql)
 
 cursor.close()
 conn.commit()
