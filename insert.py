@@ -23,7 +23,6 @@ with open('data/'+table_name+'.csv', 'r') as state:
             insert_query = "insert into " + table_name + " (" + csv_header.replace('"', '') + ")"
             values = " values (" + csv[i] + ")"
             sql = insert_query + values
-            # print(sql)
             cursor.execute('SET FOREIGN_KEY_CHECKS = 0;')
             cursor.execute(sql)
 
