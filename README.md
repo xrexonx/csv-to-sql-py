@@ -32,5 +32,5 @@ $ python insert.py
 ```
 
 ## TODO
-Refactor into dynamic migration scripts and using python class
+Refactor into dynamic migration scripts and use class for the implementation
 
