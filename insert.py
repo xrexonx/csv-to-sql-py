@@ -8,7 +8,6 @@ cursor = conn.cursor()
 
 table_name = 'county'
 load_dotenv()
-print(emoji.emojize('Python is :thumbs_up:'))
 with open('data/'+table_name+'.csv', 'r') as csv_file:
     csv = csv_file.read().splitlines()
     csv_header = csv[0]
@@ -23,6 +22,7 @@ with open('data/'+table_name+'.csv', 'r') as csv_file:
         return list(map(lambda row: '0' if row == "" else row, csv_row.split(',')))
 
     # Check if done migration
+    print(emoji.emojize(':airplane: Starting to migrate '+table_name))
     if not cursor.fetchone():
         for i in range(1, len(csv)):
             insert_query = "insert into " + table_name + " (" + csv_header.replace('"', '') + ")"
@@ -36,4 +36,4 @@ with open('data/'+table_name+'.csv', 'r') as csv_file:
 cursor.close()
 conn.commit()
 conn.close()
-print("Done migrating "+table_name)
+print(emoji.emojize(':thumbs_up: Done migrating '+table_name))
