@@ -21,6 +21,16 @@ $ git clone https://github.com/xrexonx/csv-to-sql-py.git migrations && cd migrat
 ```
 $ virtualenv venv
 ```
+```
+$ cd venv/Scripts
+```
+```
+$ source activate
+```
+```
+$ cd ../../
+```
+
 ### Install packages
 ```
 $ pip3 install -r requirements.txt
