@@ -1,7 +1,7 @@
 import os
+import emoji
 import MySQLdb as mdb
 from dotenv import load_dotenv
-import emoji
 
 conn = mdb.connect('localhost', 'root', 'root', 'chuchudb')
 cursor = conn.cursor()
