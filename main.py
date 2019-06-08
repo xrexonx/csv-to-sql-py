@@ -12,10 +12,10 @@ db_name = os.getenv("DB_NAME")
 
 csv_files = os.listdir('data')
 if len(csv_files) > 0:
-	# [print(table_name) for table_name in csv_files]
-	# migration = db.Migration('localhost', 'root', 'root', 'chuchudb')
-	migration = db.Migration(db_host, db_user, db_pass, db_name)
-	[migration.run_query(table_name) for table_name in csv_files]
+    # [print(table_name) for table_name in csv_files]
+    # migration = db.Migration('localhost', 'root', 'root', 'chuchudb')
+    migration = db.Migration(db_host, db_user, db_pass, db_name)
+    [migration.run_query(table_name) for table_name in csv_files]
 
 
 
