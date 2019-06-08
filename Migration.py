@@ -35,12 +35,12 @@ class Migration:
 		    	 # sql = mdb.escape_string(insert_query+values)
 		    	query('SET FOREIGN_KEY_CHECKS = 0;')
 		    	query(sql)
-    	cursor.close()
-    	conn.commit()
-    	# conn.close()
-    	print(emojize(':thumbs_up: Done migrating '+table_name))
+		cursor.close()
+		conn.commit()
+		# conn.close()
+		print(emojize(':thumbs_up: Done migrating '+table_name))
 
-	   def __del__(self):
-        self.conn.close()
+	def __del__(self):
+		self.conn.close()
 
 
