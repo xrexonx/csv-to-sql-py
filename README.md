@@ -21,14 +21,10 @@ $ git clone https://github.com/xrexonx/csv-to-sql-py.git migrations && cd migrat
 ```
 $ virtualenv venv
 ```
+
+### Activate environment
 ```
-$ cd venv/Scripts
-```
-```
-$ source activate
-```
-```
-$ cd ../../
+$  source venv/Scripts/activate
 ```
 
 ### Install packages
