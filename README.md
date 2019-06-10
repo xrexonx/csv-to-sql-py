@@ -34,6 +34,10 @@ Assume that you already created your database and tables
 $ python main.py
 ```
 
+### To verify
+    * Check length after migration
+    * Create random query to oracle DB and mysql DB then match the both results
+
 ## TODO
 Refactor into dynamic migration scripts and use class for the implementation
 
