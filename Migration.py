@@ -32,10 +32,11 @@ class Migration:
 		    	self.query('SET FOREIGN_KEY_CHECKS = 0;')
 				self.query(sql)
 
+				print(emojize(':thumbs_up: Done migrating '+table_name))
+				# closing connection should be transfer in function to run once after finishing insertion
 				self.cursor.close()
 				self.conn.commit()
 				self.conn.close()
-				print(emojize(':thumbs_up: Done migrating '+table_name))
 
 
 
