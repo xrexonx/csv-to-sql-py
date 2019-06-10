@@ -1,5 +1,4 @@
 import MySQLdb as mdb
-from emoji import emojize
 from utils import remove_char
 
 class Migration:
@@ -24,7 +23,7 @@ class Migration:
 	def run_query(self, csv_file, csv_dir):
 		table_name = csv_file.split('.')[0]
 		if not self.is_done(table_name):
-			print(emojize(':airplane:  Starting to migrate '+table_name+'....'))
+			print('Starting to migrate '+table_name+'....')
 			with open(csv_dir+'/'+csv_file, 'r') as file:
 				csv = file.read().splitlines()
 				csv_headers = remove_char(csv[0], '"')
@@ -39,13 +38,13 @@ class Migration:
 					self.query_exec(sql)
 					self.conn.commit()
 
-				print(emojize('Done migrating ' + table_name))
+				print('Done migrating ' + table_name)
 		else:
-			print(emojize(':fire: ' +table_name+ ' data already migrated..'))
+			print(table_name+ ' data already migrated..')
 
 	def db_close(self):
 		self.query_exec('SET FOREIGN_KEY_CHECKS = 1;')
-		print(emojize(':fire:  Closing DB connection..'))
+		print('Closing DB connection..')
 		self.cursor.close()
 		self.conn.close()
 
