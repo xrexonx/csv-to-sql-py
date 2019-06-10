@@ -1,5 +1,5 @@
 import MySQLdb as mdb
-from utils import remove_char
+from utils import remove_char, parse_csv_null_val
 
 class Migration:
 	def __init__(self, db_host, db_user, db_pass, db_name):
@@ -17,9 +17,6 @@ class Migration:
 		(number_of_rows,) = self.cursor.fetchone()
 		return number_of_rows > 0
 
-	def nullify(self, csv_row):
-		return list(map(lambda row: '0' if row == '' else row, csv_row.split(',')))
-
 	def run_query(self, csv_file, csv_dir):
 		table_name = csv_file.split('.')[0]
 		if not self.is_done(table_name):
@@ -29,7 +26,7 @@ class Migration:
 				csv_headers = remove_char(csv[0], '"')
 				insert_query = "insert into " + table_name + " (" +csv_headers+ ")"
 				for i in range(1, len(csv)):
-					csv_data = ', '.join(self.nullify(csv[i]))
+					csv_data = ', '.join(parse_csv_null_val(csv[i].split(','), '0'))
 					values = " values (" + csv_data + ")"
 					sql = insert_query+values
 					# sql = mdb.escape_string(insert_query+values)
