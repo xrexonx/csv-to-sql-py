@@ -33,8 +33,9 @@ $ pip3 install -r requirements.txt
 ```
 
 ### Run migration
+Assume that you already created your database and tables
 ```
-$ python insert.py
+$ python main.py
 ```
 
 ## TODO
