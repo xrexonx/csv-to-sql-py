@@ -17,7 +17,10 @@ db_name = os.getenv("DB_NAME")
 csv_dir = DATA_DIR+'/'+ENV
 csv_files = os.listdir(csv_dir)
 if len(csv_files) > 0:
+    # Instantiate Migration
     migration = db.Migration(db_host, db_user, db_pass, db_name)
+
+    # Iterate csv files for migration
     [migration.run_query(table_name, csv_dir) for table_name in csv_files]
 
     # Close connection after insertion

@@ -13,10 +13,6 @@ Also need to have virtualenv
 $ pip3 install virtualenv
 ```
 
-### Setup
-```
-$ git clone https://github.com/xrexonx/csv-to-sql-py.git migrations && cd migrations
-```
 ### Create environment
 ```
 $ virtualenv venv
