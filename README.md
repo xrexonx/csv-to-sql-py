@@ -36,7 +36,7 @@ $ python main.py
 
 ### To verify
     * Check length after migration
-    * Create random query to oracle DB and mysql DB then match the both results
+    * Create random query to oracle DB and mysql DB then match both results
 
 ## TODO
 Refactor into dynamic migration scripts and use class for the implementation
