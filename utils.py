@@ -14,4 +14,4 @@ remove_char = lambda str, char: str.replace(char, '')
 	# return str.replace(char, '')
 
 def parse_csv_null_val(arr_str, sub):
-	return list(map(lambda str: sub if str == '' else str, arr_str))
+	return list(map(lambda str: sub if str.strip() == '' else str, arr_str))

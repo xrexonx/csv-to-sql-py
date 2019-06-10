@@ -21,20 +21,21 @@ class Migration:
 		table_name = csv_file.split('.')[0]
 		if not self.is_done(table_name):
 			print('Starting to migrate '+table_name+'....')
+			print('This may take a few minutes...')
 			with open(csv_dir+'/'+csv_file, 'r') as file:
 				csv = file.read().splitlines()
 				csv_headers = remove_char(csv[0], '"')
 				insert_query = "insert into " + table_name + " (" +csv_headers+ ")"
 				for i in range(1, len(csv)):
 					csv_data = ', '.join(parse_csv_null_val(csv[i].split(','), '0'))
-					values = " values (" + csv_data + ")"
+					values = " values (" + csv_data.strip() + ")"
 					sql = insert_query+values
 					# sql = mdb.escape_string(insert_query+values)
 					# Disable foreignkey checking for insertion
 					self.query_exec('SET FOREIGN_KEY_CHECKS = 0;')
 					self.query_exec(sql)
-					self.conn.commit()
 
+				self.conn.commit()
 				print('Done migrating ' + table_name)
 		else:
 			print(table_name+ ' data already migrated..')
