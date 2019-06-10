@@ -19,8 +19,6 @@ class Migration:
 		return list(map(lambda row: '0' if row == '' else row, csv_row.split(',')))
 
 	def run_query(self, table_name):
-		conn = self.conn
-		cursor = self.cursor
 		print(emojize(':airplane: Starting to migrate '+table_name+'....'))
 		with open('data/'+table_name, 'r') as csv_file:
 			csv = csv_file.read().splitlines()

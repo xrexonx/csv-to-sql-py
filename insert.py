@@ -3,20 +3,25 @@ import emoji
 import MySQLdb as mdb
 from dotenv import load_dotenv
 
-conn = mdb.connect('localhost', 'root', 'root', 'chuchudb')
+# Load environment
+load_dotenv()
+
+ENV = os.getenv("ENV")
+db_host = os.getenv("DB_HOST")
+db_user = os.getenv("DB_USER")
+db_pass = os.getenv("DB_PASS")
+db_name = os.getenv("DB_NAME")
+
+conn = mdb.connect(db_host, db_user, db_pass, db_name)
 cursor = conn.cursor()
 
-table_name = 'county'
-load_dotenv()
-with open('data/'+table_name+'.csv', 'r') as csv_file:
+# should be dynamic
+table_name = 'state'
+
+with open('data/'+ENV+'/'+table_name+'.csv', 'r') as csv_file:
     csv = csv_file.read().splitlines()
     csv_header = csv[0]
     cursor.execute('select * from '+table_name+';')
-    db_name = os.getenv("DB_NAME")
-    print(db_name)
-    # print(os.listdir("data"))
-    # for x in os.listdir('data'):
-    #     print(x)
 
     def nullify(csv_row):
         return list(map(lambda row: '0' if row == "" else row, csv_row.split(',')))
