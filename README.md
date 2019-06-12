@@ -28,10 +28,15 @@ $  source venv/Scripts/activate
 $ pip3 install -r requirements.txt
 ```
 
+### Run export data to csv
+```
+$ py export.py
+```
+
 ### Run migration
 Assume that you already created your database and tables
 ```
-$ python main.py
+$ py import.py
 ```
 
 ### To verify
